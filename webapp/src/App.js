@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { connect } from "react-redux";
 
-export default App;
+import { ThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
+
+import theme from "./theme";
+
+import Root from "./Root";
+
+// Handle Auth, and put app frame here
+export default connect(({ user }) => ({ user }))((props) => (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Container maxWidth="sm">
+      <Root />
+    </Container>
+  </ThemeProvider>
+));

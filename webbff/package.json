@@ -18,7 +18,8 @@
     "log4js": "^6.3.0",
     "mongodb": "^3.5.9",
     "passport-azure-ad": "^4.2.1",
-    "uuid": "^8.2.0"
+    "uuid": "^8.2.0",
+    "validator": "^13.1.1"
   },
   "devDependencies": {
     "mongodb-memory-server": "^6.6.1",

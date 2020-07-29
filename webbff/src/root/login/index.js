@@ -1,4 +1,3 @@
-const express = require("express");
-const router = express.Router();
-
-module.exports = router;
+module.exports = require("express")
+  .Router()
+  .use("/testauth", require("./testauth"));

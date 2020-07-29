@@ -1,7 +1,4 @@
-const express = require("express");
-const router = express.Router();
-
-router.use("/login", require("./login"));
-router.use("/ping", require("./ping"));
-
-module.exports = router;
+module.exports = require("express")
+  .Router()
+  .use("/login", require("./login"))
+  .use("/ping", require("./ping"));

@@ -4,8 +4,6 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 
-import { connect } from "react-redux";
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -19,7 +17,7 @@ function Copyright() {
   );
 }
 
-export default connect()((props) => {
+export default (props) => {
   return (
     <Box my={4}>
       <Typography variant="h4" component="h1" gutterBottom>
@@ -38,4 +36,4 @@ export default connect()((props) => {
       </Typography>
     </Box>
   );
-});
+};

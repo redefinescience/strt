@@ -9,13 +9,12 @@ import Container from "@material-ui/core/Container";
 import theme from "./theme";
 
 import Root from "./Root";
+import Login from "./Login";
 
 // Handle Auth, and put app frame here
 export default connect(({ user }) => ({ user }))((props) => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Container maxWidth="sm">
-      <Root />
-    </Container>
+    <Container maxWidth="sm">{props.user.id ? <Root /> : <Login />}</Container>
   </ThemeProvider>
 ));

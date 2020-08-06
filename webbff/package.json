@@ -1,0 +1,33 @@
+{
+  "name": "webbff",
+  "version": "1.0.0",
+  "description": "strt",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest /src"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "connect-mongodb-session": "^2.3.3",
+    "cors": "^2.8.5",
+    "crypto-random-string": "^3.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "http-status-codes": "^1.4.0",
+    "log4js": "^6.3.0",
+    "mongodb": "^3.5.9",
+    "passport-azure-ad": "^4.2.1",
+    "uuid": "^8.2.0",
+    "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^6.6.1",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2",
+    "jest": "^26.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

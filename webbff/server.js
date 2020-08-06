@@ -5,19 +5,19 @@ logger.level = config.loglevel;
 
 const express = require("express");
 
-const server = express();
-
-// Make sure .req.strt exists
-server.use((req, _res, next) => (req.strt = {} && next()));
+const app = express();
 
 // Attach logger to req
-server.use(require("./src/middleware/logging"));
+app.use(require("./src/middleware/logging"));
 
 // Cors/Session setup
-server.use(require("./src/middleware/session"));
+app.use(require("./src/middleware/session"));
 
 // Root route
-server.use("/", require("./src/root"));
+app.use("/", require("./src/root"));
+
+// TODO: BASED ON CLI ARG
+const server = require("./devhttps")(app);
 
 server.listen(config.port, (e) =>
   e

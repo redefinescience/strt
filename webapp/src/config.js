@@ -1,3 +1,3 @@
 export default {
-  testauth: "http://localhost:5000/login/testauth",
+  testauth: "https://localhost:5000/login/testauth",
 };

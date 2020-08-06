@@ -12,7 +12,7 @@ const defaultConfig = {
 const local = {
   loglevel: "debug",
   local: true,
-  origin: "http://localhost:3000",
+  origin: "https://localhost:3000",
   mongoURI: "mongodb://localhost:27017",
 };
 

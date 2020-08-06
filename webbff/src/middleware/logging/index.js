@@ -15,7 +15,7 @@ const uuid = require("uuid");
  */
 module.exports = (req, res, next) => {
   req.transactionId = uuid.v4();
-  req.logger = log4js.getLogger(transactionId);
+  req.logger = log4js.getLogger(req.transactionId);
   req.logger.level = config.loglevel;
 
   return log4js.connectLogger(req.logger, {

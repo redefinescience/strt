@@ -18,5 +18,5 @@ module.exports = (req, res) => {
   };
   session.save();
 
-  return common.returnAuth(session, res);
+  return common.returnAuth(req, res);
 };

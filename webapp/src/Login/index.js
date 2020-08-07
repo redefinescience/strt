@@ -75,6 +75,7 @@ export default ({ setLoggedUser }) => {
       return <ProviderList useAuthState={[authState, setAuthState]} />;
     case AuthState.LOGGEDIN:
       setLoggedUser(authState.user);
+    //window.location.replace(window.location.origin + returnPath);
     // -fallthrough
     default:
       return <>...</>;

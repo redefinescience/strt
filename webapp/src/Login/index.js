@@ -6,11 +6,17 @@ import ProviderList from "./ProviderList";
 import * as BFF from "../BFF";
 import * as HttpStatus from "http-status-codes";
 
-const handleAuthed = (response, setAuthState) => response.json().then();
+const handleAuthed = (response, setAuthState) =>
+  response.json().then((result) => {
+    setAuthState({
+      state: AuthState.LOGGEDIN,
+      returnPath: result.returnpath,
+      user: result.user,
+    });
+  });
 
 const handleNotAuthed = (response, setAuthState) =>
   response.json().then((result) => {
-    console.log(result);
     setAuthState({
       state: AuthState.NOAUTH,
       crumbs: result.crumbs,
@@ -33,11 +39,20 @@ const fetchAuth = (returnPath, setAuthState) =>
     handleAuthResponse(response, setAuthState),
   );
 
+const loginAuth = (loginQuery, setAuthState) =>
+  BFF.loginAuth({
+    crumbs: loginQuery.get("crumbs"),
+    key: loginQuery.get("key"),
+  }).then((response) => handleAuthResponse(response, setAuthState));
+
 const isLoginPath = () =>
   window.location.pathname.toLowerCase().startsWith("/login");
 
-export default (props) => {
+export default ({ setLoggedUser }) => {
   const returnPath = isLoginPath() ? "/" : window.location.pathname;
+  const loginQuery = isLoginPath()
+    ? new URLSearchParams(window.location.search)
+    : null;
   const [authState, setAuthState] = React.useState({
     state: isLoginPath() ? AuthState.LOGIN : AuthState.NONE,
   });
@@ -48,15 +63,19 @@ export default (props) => {
         fetchAuth(returnPath, setAuthState);
         break;
       case AuthState.LOGIN:
+        loginAuth(loginQuery, setAuthState);
         break;
       default:
         break;
     }
-  });
+  }, [authState, returnPath, loginQuery]);
 
   switch (authState.state) {
     case AuthState.NOAUTH:
       return <ProviderList useAuthState={[authState, setAuthState]} />;
+    case AuthState.LOGGEDIN:
+      setLoggedUser(authState.user);
+    // -fallthrough
     default:
       return <>...</>;
   }

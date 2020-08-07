@@ -14,13 +14,16 @@ app.use(require("./src/middleware/logging"));
 app.use(require("./src/middleware/session"));
 
 // Root route
-app.use("/", require("./src/root"));
+app.use("/", express.json(), require("./src/root"));
 
 // TODO: BASED ON CLI ARG
-const server = require("./devhttps")(app);
+const server =
+  String(process.env.HTTPS).toLowerCase() === "true"
+    ? require("./devhttps")(app)
+    : app;
 
 server.listen(config.port, (e) =>
   e
     ? logger.fatal("server failed to start", e)
-    : logger.info(`server running on ${config.port}`),
+    : logger.info(`server running on ${config.port}`)
 );

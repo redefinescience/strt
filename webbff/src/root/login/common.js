@@ -7,7 +7,7 @@ module.exports.returnNoAuth = (req, res) =>
   });
 
 module.exports.returnAuth = (req, res) =>
-  res.status(httpStatus.OK).json({
+  res.json({
     returnpath: req.session.returnpath,
     user: req.session.auth.user
   });

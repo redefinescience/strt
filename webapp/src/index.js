@@ -3,21 +3,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Provider } from "react-redux";
 
-import ReduxStore from "./Redux";
 import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={ReduxStore}>
-        <main>
-          <Switch>
-            <Route path="/" component={App} />
-          </Switch>
-        </main>
-      </Provider>
+      <main>
+        <Switch>
+          <Route path="/" component={App} />
+        </Switch>
+      </main>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root"),

@@ -3,6 +3,8 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import Session from "../Session";
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -18,10 +20,14 @@ function Copyright() {
 }
 
 export default (props) => {
+  const history = useHistory();
   return (
     <Box my={4}>
       <Typography variant="h4" component="h1" gutterBottom>
         Create React App v4-beta example
+      </Typography>
+      <Typography variant="body2" color="textSecondary" align="center">
+        {JSON.stringify(Session.get(), null, 2)}
       </Typography>
       <Copyright />
       <Typography
@@ -29,7 +35,7 @@ export default (props) => {
         color="textSecondary"
         align="center"
         onClick={() => {
-          // logout(props);
+          history.push("/login");
         }}
       >
         Logout

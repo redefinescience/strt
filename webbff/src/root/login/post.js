@@ -3,20 +3,21 @@ const common = require("./common");
 
 module.exports = (req, res) => {
   const { body, session } = req;
-
-  console.log(body);
-  console.log(session);
   if (body.crumbs !== session.crumbs) {
+    delete session.crumbs;
+    delete session.returnPath;
+    delete session.auth;
+    session.save();
     return common.returnNoAuth(req, res);
   }
 
-  session.crumbs = undefined;
+  delete session.crumbs;
   session.auth = {};
   session.auth.user = {
     id: "TESTID",
     displayName: "Test Name"
   };
   session.save();
-
+  console.log(session);
   return common.returnAuth(req, res);
 };

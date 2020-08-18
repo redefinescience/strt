@@ -5,8 +5,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 
-export default ({ useAuthState }) => {
-  const [authState] = useAuthState;
+export default ({ authState }) => {
   return (
     <Box my={4} align="center">
       <Typography variant="h4" component="h1" gutterBottom>
